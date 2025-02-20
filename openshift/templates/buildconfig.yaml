@@ -2,14 +2,14 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: nginx-gitlab-build-example
+  name: cakephp-ex
 spec:
   output:
     to:
       kind: DockerImage
       name: "registry.natwest.gitlab-dedicated.com/natwestgroup/digitalx/technology/hostingsolutions/sharedplatformsandobservability/private-cloud-sandbox/nginx-s2i-example/nginx-pcs-image:{{ namespace.name }}"
     pushSecret:
-      name: gitlab-pcs-reg-token
+      name: github-pcs-reg-token
   resources:
     limits:
       cpu: 200m
@@ -22,14 +22,14 @@ spec:
     sourceStrategy:
       from:
         kind: DockerImage
-        name: 'registry.access.redhat.com/ubi9/nginx-124:9.5-1737483922'
+        name: 'registry.access.redhat.com/ubi9/php-81@sha256:170dcac5aa35810b941e18d73a45be69201d430ac54b5ac9b4d84f57dc68d6ed'
   source:
     type: Git
     git:
-      uri: 'https://natwest.gitlab-dedicated.com/natwestgroup/DigitalX/Technology/HostingSolutions/SharedPlatformsandObservability/private-cloud-sandbox/nginx-s2i-example'
+      uri: 'https://github.com/GagandeepMal/cakephp-ex'
     contextDir: /
     sourceSecret:
-      name: gitlab-pcs-token
+      name: github-pcs-token
   triggers:
     - type: ConfigChange
   runPolicy: Serial
