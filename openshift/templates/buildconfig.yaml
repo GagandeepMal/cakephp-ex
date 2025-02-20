@@ -1,0 +1,35 @@
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: nginx-gitlab-build-example
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: "registry.natwest.gitlab-dedicated.com/natwestgroup/digitalx/technology/hostingsolutions/sharedplatformsandobservability/private-cloud-sandbox/nginx-s2i-example/nginx-pcs-image:{{ namespace.name }}"
+    pushSecret:
+      name: gitlab-pcs-reg-token
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: DockerImage
+        name: 'registry.access.redhat.com/ubi9/nginx-124:9.5-1737483922'
+  source:
+    type: Git
+    git:
+      uri: 'https://natwest.gitlab-dedicated.com/natwestgroup/DigitalX/Technology/HostingSolutions/SharedPlatformsandObservability/private-cloud-sandbox/nginx-s2i-example'
+    contextDir: /
+    sourceSecret:
+      name: gitlab-pcs-token
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
