@@ -7,7 +7,7 @@ spec:
   output:
     to:
       kind: DockerImage
-      name: "registry.natwest.gitlab-dedicated.com/natwestgroup/digitalx/technology/hostingsolutions/sharedplatformsandobservability/private-cloud-sandbox/nginx-s2i-example/nginx-pcs-image:{{ namespace.name }}"
+      name: "registry.natwest.gitlab-dedicated.com/natwestgroup/digitalx/technology/hostingsolutions/sharedplatformsandobservability/private-cloud-sandbox/cakephp-example/cakephp-pcs-image:{{ namespace.name }}"
     pushSecret:
       name: github-pcs-reg-token
   resources:
