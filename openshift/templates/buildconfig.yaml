@@ -9,7 +9,7 @@ spec:
       kind: DockerImage
       name: "registry.natwest.gitlab-dedicated.com/gagandeep.malhotra/cakephp-ex/cakephp-ex:v1"
     pushSecret:
-      name: github-pcs-reg-token
+      name: gitlab-pcs-reg-token
   resources:
     limits:
       cpu: 200m
@@ -29,7 +29,7 @@ spec:
       uri: 'https://github.com/GagandeepMal/cakephp-ex'
     contextDir: /
     sourceSecret:
-      name: github-pcs-token
+      name: gitlab-pcs-token
   triggers:
     - type: ConfigChange
   runPolicy: Serial
